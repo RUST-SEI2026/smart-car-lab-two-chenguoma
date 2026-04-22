@@ -1,9 +1,11 @@
-use executor::{Executor, Pose};
+use executor::Executor;
+use executor::Pose;
 
 mod move_tests {
     use super::*;
 
     #[test]
+    //#[ignore] 
     fn should_return_x_plus_1_given_command_is_m_and_facing_is_e() {
         // given
         let original_pose = Pose::new(0, 0, 'E');
@@ -16,6 +18,7 @@ mod move_tests {
     }
 
     #[test]
+    //#[ignore] 
     fn shoud_return_y_minus_1_given_command_is_m_and_facing_is_s() {
         // given
         let original_pose = Pose::new(0, 0, 'S');
@@ -30,6 +33,7 @@ mod move_tests {
     }
 
     #[test]
+    //#[ignore] 
     fn shoud_return_x_minus_1_given_command_is_m_and_facing_is_w() {
         // given
         let original_pose = Pose::new(0, 0, 'W');
@@ -44,6 +48,7 @@ mod move_tests {
     }
 
     #[test]
+    //#[ignore] 
     fn shoud_return_y_plus_1_given_command_is_m_and_facing_is_n() {
         // given
         let original_pose = Pose::new(0, 0, 'N');
@@ -62,6 +67,7 @@ mod turn_left_tests {
     use super::*;
 
     #[test]
+    //#[ignore] 
     fn should_return_facing_n_given_command_is_l_and_facing_is_e() {
         // given
         let original_pose = Pose::new(0, 0, 'E');
@@ -76,6 +82,7 @@ mod turn_left_tests {
     }
 
     #[test]
+    //#[ignore] 
     fn should_return_facing_e_given_command_is_l_and_facing_is_s() {
         // given
         let original_pose = Pose::new(0, 0, 'S');
@@ -90,6 +97,7 @@ mod turn_left_tests {
     }
 
     #[test]
+    //#[ignore] 
     fn should_return_facing_s_given_command_is_l_and_facing_is_w() {
         // given
         let original_pose = Pose::new(0, 0, 'W');
@@ -104,6 +112,7 @@ mod turn_left_tests {
     }
 
     #[test]
+    //#[ignore] 
     fn should_return_facing_w_given_command_is_l_and_facing_is_n() {
         // given
         let original_pose = Pose::new(0, 0, 'N');
@@ -122,6 +131,7 @@ mod turn_right_tests {
     use super::*;
 
     #[test]
+    //#[ignore] 
     fn should_return_facing_s_given_command_is_r_and_facing_is_e() {
         // given
         let original_pose = Pose::new(0, 0, 'E');
@@ -136,6 +146,7 @@ mod turn_right_tests {
     }
 
     #[test]
+    //#[ignore] 
     fn should_return_facing_w_given_command_is_r_and_facing_is_s() {
         // given
         let original_pose = Pose::new(0, 0, 'S');
@@ -150,6 +161,7 @@ mod turn_right_tests {
     }
 
     #[test]
+    //#[ignore] 
     fn should_return_facing_n_given_command_is_r_and_facing_is_w() {
         // given
         let original_pose = Pose::new(0, 0, 'W');
@@ -164,6 +176,7 @@ mod turn_right_tests {
     }
 
     #[test]
+    //#[ignore] 
     fn should_return_facing_e_given_command_is_r_and_facing_is_n() {
         // given
         let original_pose = Pose::new(0, 0, 'N');
@@ -177,3 +190,24 @@ mod turn_right_tests {
         assert_eq!(expected_pose, executor.query());
     }
 }
+
+
+
+mod reverse_tests{
+    use super::*;
+
+    #[test]
+    fn should_return_x_minus_1_given_status_is_reverse_command_is_m_and_facing_is_e(){
+        let original_pose = Pose::new(0, 0, 'E');
+        let mut executor = Executor::with_pose(original_pose);
+
+        // when
+        executor.execute("BM");
+
+        // then
+        let expected_pose = Pose::new(-1, 0, 'E');
+        assert_eq!(expected_pose, executor.query());
+    }
+
+}
+
