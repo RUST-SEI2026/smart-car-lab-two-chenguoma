@@ -45,7 +45,7 @@ mod reverse_tests{
 
     #[test]
     fn should_return_y_plus_1_given_command_is_bbm_and_facing_is_n(){
-        let original_pose = Pose::new(0, 0, 'E');
+        let original_pose = Pose::new(0, 0, 'N');
         let mut executor = Executor::with_pose(original_pose);
 
         // when
