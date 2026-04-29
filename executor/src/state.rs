@@ -4,17 +4,22 @@ use super::action::Action;
 
 pub(crate) struct State{
     pub(crate) is_reverse: bool,
+    pub(crate) is_fast:bool
 }
 
 impl Default for State{
     fn default() -> Self {
-        State{is_reverse:false}
+        State{is_reverse:false,is_fast:false,}
     }
 }
 
 impl State{
     pub(crate) fn be_reverse(&mut self){
         self.is_reverse=!self.is_reverse;
+    }
+
+    pub(crate) fn be_fast(&mut self){
+        self.is_fast = !self.is_fast;
     }
 
     pub(crate)  fn assemble(&self, cmd:char) -> Vec<Action>{
@@ -29,15 +34,26 @@ impl State{
     fn move_assemble(&self) ->Vec<Action> {
         let mut actions=Vec::new();
         let direction = if self.is_reverse {-1} else {1};
-        let action =Action::Forward(direction);
-
+        let action = Action::Forward(direction);
+        
         actions.push(action);
+
+        if self.is_fast {
+            let action=Action::Forward(direction);
+            actions.push(action);
+        }
 
         actions
     }
 
     fn turn_left_assemble(&self) ->Vec<Action>{
         let mut actions=Vec::new();
+
+        let direction = if self.is_reverse {-1} else {1};
+        if self.is_fast {
+            let action=Action::Forward(direction);
+            actions.push(action);
+        }
 
         let turn_action=if self.is_reverse{
             Action::TurnRight
@@ -51,6 +67,12 @@ impl State{
 
     fn turn_right_assemble(&self) ->Vec<Action>{
         let mut actions=Vec::new();
+
+        let direction = if self.is_reverse {-1} else {1};
+        if self.is_fast {
+            let action=Action::Forward(direction);
+            actions.push(action);
+        }
 
         let turn_action=if self.is_reverse{
             Action::TurnLeft

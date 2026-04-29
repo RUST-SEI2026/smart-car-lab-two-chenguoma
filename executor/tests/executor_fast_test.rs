@@ -27,7 +27,7 @@ mod fast_tests{
         executor.execute("FL");
 
         // then
-        let expected_pose = Pose::new(1, 0, 'n');
+        let expected_pose = Pose::new(1, 0, 'N');
         assert_eq!(expected_pose, executor.query());
     }
 
